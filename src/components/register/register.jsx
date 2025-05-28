@@ -4,7 +4,6 @@ import { Input } from "../ui/input"
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { GoogleSignInAPI, RegisterAPI } from "../../api/AuthAPI";
-import LinkedinLogo from '../../assets/linkedinLogo.png';
 
 import "./register.css";
 
@@ -26,37 +25,33 @@ export const Register = () => {
 
 
   return (
-    <div className="register-wrapper">
-      <img src={LinkedinLogo} className="linkedinLogo" />
-
-      <div className="register-wrapper-inner">
+    <div className="flex flex-col items-center justify-center h-full">
+      <div className="flex flex-col items-center justify-center h-full">
         <h1>Giving back in your golden years</h1>
-        <div className="auth-inputs">
-        <Input
-            onChange={(event) =>
-              setCredentials({ ...credentails, email: event.target.value })
-            }
-            type="email"
-            className="common-input"
-            placeholder="Email or Phone"
-        />
-        <Input
-            onChange={(event) =>
-                setCredentials({ ...credentails, password: event.target.value })
-            }
-            type="password"
-            className="common-input"
-            placeholder="input password"
-        />
+        <div className="flex flex-col gap-2.5 w-[600px] mt-5">
+            <Input
+                onChange={(event) =>
+                setCredentials({ ...credentails, email: event.target.value })
+                }
+                type="email"
+                className="common-input"
+                placeholder="Email or Phone"
+            />
+            <Input
+                onChange={(event) =>
+                    setCredentials({ ...credentails, password: event.target.value })
+                }
+                type="password"
+                className="common-input"
+                placeholder="input password"
+            />
         </div>
     
-    <Button 
+    <Button className="mt-5 w-[600px]"
             onClick={register}
             >Agree & join</Button>
 
-            
-      </div>
-      <hr className="hr-text" data-content="or" />
+    <hr className="hr-text mt-5 mb-5" data-content="or" />
       <div className="google-btn-container">
         <p className="go-to-signup">
           Already in Golden?{" "}
@@ -65,6 +60,8 @@ export const Register = () => {
           </span>
         </p>
       </div>
+      </div>
+     
     </div>
   );
 }

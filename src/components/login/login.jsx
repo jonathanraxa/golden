@@ -5,10 +5,8 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { routes } from '../../routes/routes';
 import { GoogleSignInAPI, LoginAPI } from "../../api/AuthAPI";
-import LinkedinLogo from '../../assets/linkedinLogo.png';
 
 import "./login.css";
-// import { toast } from "react-toastify";
 
 export const Login = () => {
   let navigate = useNavigate();
@@ -31,14 +29,11 @@ export const Login = () => {
   // }
 
   return (
-    <div className="login-wrapper">
-      <img src={LinkedinLogo} className="linkedinLogo" />
-
-      <div className="login-wrapper-inner">
+    <div className="flex flex-col items-center justify-center h-full">
+      <div className="flex flex-col items-center justify-center h-full">
         <h1>Sign in</h1>
-        <p className="sub-heading">Giving back in your golden years</p>
-
-        <div className="auth-inputs">
+        <p className="sub-heading mt-5">Giving back in your golden years</p>
+        <div className="auth-inputs mt-5">
             <Input
               onChange={(event) =>
               setCredentials({ ...credentails, email: event.target.value })
@@ -59,11 +54,11 @@ export const Login = () => {
         </div>
 
          <Button 
-                  onClick={login}
-                  >Sign in</Button>
-
-      </div>
-      <hr className="hr-text" data-content="or" />
+            onClick={login}
+            className='mt-5'
+          >Sign in</Button>
+          
+   <hr className="hr-text mt-5 mb-5" data-content="or" />
       <div className="google-btn-container">
         <p className="go-to-signup">
           New to LinkedIn?{" "}
@@ -72,6 +67,8 @@ export const Login = () => {
           </span>
         </p>
       </div>
+      </div>
+   
     </div>
   );
 }
