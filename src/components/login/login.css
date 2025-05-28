@@ -1,7 +1,3 @@
-$linkedinBlue1: #0072b1;
-$linkedinBlue2: #0073b1;
-$linkedinBlue3: #004c75;
-
 body {
   margin: 0;
   padding: 0;
@@ -9,7 +5,7 @@ body {
 
 .login-wrapper {
   background-color: white !important;
-//   height: 100vh;
+  height: 100vh;
   .login-wrapper-inner {
     display: flex;
     flex-direction: column;
@@ -32,7 +28,7 @@ body {
   width: 300px;
   height: 50px;
   cursor: pointer;
-  background-color: $linkedinBlue2;
+  /* background-color: $linkedinBlue2; */
   border-radius: 30px;
   outline: none;
   border: none;
@@ -44,7 +40,7 @@ body {
 }
 
 .login-btn:hover {
-  background-color: $linkedinBlue3;
+  /* background-color: $linkedinBlue3; */
 }
 
 .auth-inputs {
@@ -69,8 +65,8 @@ body {
   opacity: 0.5;
   &:before {
     content: "";
-    // use the linear-gradient for the fading effect
-    // use a solid background color for a solid bar
+    /* // use the linear-gradient for the fading effect
+    // use a solid background color for a solid bar */
     background: linear-gradient(to right, transparent, #818078, transparent);
     position: absolute;
     left: 0;
@@ -86,7 +82,7 @@ body {
 
     padding: 0 0.5em;
     line-height: 1.5em;
-    // this is really the only tricky part, you need to specify the background color of the container element...
+    /* this is really the only tricky part, you need to specify the background color of the container element... */
     color: #818078;
     background-color: #fcfcfa;
   }
@@ -107,7 +103,7 @@ body {
   }
 
   .join-now {
-    color: $linkedinBlue1;
+    /* color: $linkedinBlue1; */
     font-family: system-ui;
     cursor: pointer;
     font-size: 18px;
