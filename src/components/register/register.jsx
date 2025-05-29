@@ -1,25 +1,27 @@
 import React, { useState } from "react";
+import { toast } from 'react-toastify';
 import { Button } from "../ui/button"
 import { Input } from "../ui/input"
 import { useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
-import { GoogleSignInAPI, RegisterAPI } from "../../api/AuthAPI";
 
-import "./register.css";
+import { RegisterAPI } from "../../api/AuthAPI";
 
 export const Register = () => {
-  let navigate = useNavigate();
+  const navigate = useNavigate();
+
   const [credentails, setCredentials] = useState({});
 
   const register = async () => {
     try {
       let res = await RegisterAPI(credentails.email, credentails.password);
       toast.success("Account created!");
+  
     //   localStorage.setItem("userEmail", res.user.email);
       navigate("/home");
     } catch (err) {
       console.log(err);
       toast.error("Cannot create your account");
+ 
     }
   };
 
@@ -27,7 +29,7 @@ export const Register = () => {
   return (
     <div className="flex flex-col items-center justify-center h-full">
       <div className="flex flex-col items-center justify-center h-full">
-        <h1>Giving back in your golden years</h1>
+        <h1 className="text-2xl">Giving back in your golden years</h1>
         <div className="flex flex-col gap-2.5 w-[600px] mt-5">
             <Input
                 onChange={(event) =>
@@ -47,15 +49,17 @@ export const Register = () => {
             />
         </div>
     
-    <Button className="mt-5 w-[600px]"
-            onClick={register}
-            >Agree & join</Button>
+    <Button 
+        className="mt-5 w-[600px]"
+        onClick={register}
+        >
+            Agree & join</Button>
 
     <hr className="hr-text mt-5 mb-5" data-content="or" />
-      <div className="google-btn-container">
+      <div className="flex flex-col items-center justify-center">
         <p className="go-to-signup">
           Already in Golden?{" "}
-          <span className="join-now" onClick={() => navigate("/login")}>
+          <span className="text-blue-500 text-lg cursor-pointer" onClick={() => navigate("/login")}>
             Sign in
           </span>
         </p>

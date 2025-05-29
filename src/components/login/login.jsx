@@ -1,20 +1,18 @@
 import React, { useState } from "react";
+import { toast } from 'react-toastify';
 import { Button } from "../ui/button"
 import { Input } from "../ui/input"
 import { useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
 import { routes } from '../../routes/routes';
-import { GoogleSignInAPI, LoginAPI } from "../../api/AuthAPI";
-
-import "./login.css";
+import { LoginAPI } from "../../api/AuthAPI";
 
 export const Login = () => {
-  let navigate = useNavigate();
+  const navigate = useNavigate();
   const [credentails, setCredentials] = useState({});
   const login = async () => {
     try {
       let res = await LoginAPI(credentails.email, credentails.password);
-      toast.success("Signed In to Linkedin!");
+      toast.succes("Signed In to Linkedin!");
       localStorage.setItem("userEmail", res.user.email);
       navigate(routes.home);
     } catch (err) {
@@ -23,17 +21,12 @@ export const Login = () => {
     }
   };
 
-  // const googleSignIn = () => {
-  //   let response = GoogleSignInAPI();
-  //   console.log(response);
-  // }
-
   return (
     <div className="flex flex-col items-center justify-center h-full">
       <div className="flex flex-col items-center justify-center h-full">
-        <h1>Sign in</h1>
+        <h1 className="text-2xl">Sign in</h1>
         <p className="sub-heading mt-5">Giving back in your golden years</p>
-        <div className="auth-inputs mt-5">
+        <div className="flex flex-col gap-2.5 w-[400px] mt-5">
             <Input
               onChange={(event) =>
               setCredentials({ ...credentails, email: event.target.value })
@@ -58,11 +51,11 @@ export const Login = () => {
             className='mt-5'
           >Sign in</Button>
           
-   <hr className="hr-text mt-5 mb-5" data-content="or" />
-      <div className="google-btn-container">
+    <hr className="hr-text mt-5 mb-5" data-content="or" />
+      <div className="flex flex-col items-center justify-center">
         <p className="go-to-signup">
           New to LinkedIn?{" "}
-          <span className="join-now" onClick={() => navigate("/register")}>
+          <span className="text-blue-500 text-lg cursor-pointer" onClick={() => navigate("/register")}>
             Join now
           </span>
         </p>
