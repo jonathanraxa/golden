@@ -1,19 +1,21 @@
 // vite.config.js
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
-import path from 'path'
-import { fileURLToPath } from 'url'
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react";
+import tailwindcss from "@tailwindcss/vite";
+import path from "path";
+import { fileURLToPath } from "url";
 
-// Polyfill __filename and __dirname in ESM:
-const __filename = fileURLToPath(import.meta.url)
-const __dirname  = path.dirname(__filename)
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 export default defineConfig({
-  plugins: [react()],
+  plugins: [
+    react(),            // Enables React support
+    tailwindcss()       // Enables Tailwind v4 processing
+  ],
   resolve: {
     alias: {
-      // Now `@` resolves to the `src` directory:
-      '@': path.resolve(__dirname, 'src'),
-    },
-  },
-})
+      "@": path.resolve(__dirname, "./src") // “@/” → “src/”
+    }
+  }
+});

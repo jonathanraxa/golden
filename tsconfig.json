@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "module": "ESNext",
+    "jsx": "react-jsx",
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"]
+    },
+
+    // ← Add or update these two lines:
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+
+    // (Optional if you’re using pure ESM packages; you can try "nodenext" instead of "node".)
+    // "moduleResolution": "nodenext",
+    // "allowSyntheticDefaultImports": true,
+    // "resolveJsonModule": true
+  },
+  "include": ["src"]
+}
