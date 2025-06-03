@@ -1,9 +1,16 @@
 import { firestore } from "@/firebaseConfig";
-import { addDoc, collection, onSnapshot } from "firebase/firestore";
+import {
+  addDoc,
+  collection,
+  onSnapshot,
+  doc,
+  deleteDoc,
+} from "firebase/firestore";
 import { toast } from "sonner";
 import moment from "moment";
 
 let dbRef = collection(firestore, "posts");
+let postsRef = collection(firestore, "posts");
 
 const currentTime = moment().format("LLL");
 const userEmail = localStorage.getItem("userEmail");
@@ -33,4 +40,14 @@ export const getPosts = (setAllStatus) => {
       }),
     );
   });
+};
+
+export const deletePost = (id) => {
+  let docToDelete = doc(postsRef, id);
+  try {
+    deleteDoc(docToDelete);
+    toast("Post has been Deleted!");
+  } catch (err) {
+    console.log(err);
+  }
 };
