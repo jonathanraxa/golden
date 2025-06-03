@@ -3,8 +3,8 @@ import { toast } from "react-toastify";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useNavigate } from "react-router-dom";
-import { routes } from "../../routes/routes";
-import { LoginAPI } from "../../api/AuthAPI";
+import { routes } from "@/routes/routes";
+import { LoginAPI } from "@/api/AuthAPI";
 
 export const Login = () => {
   const navigate = useNavigate();
@@ -12,12 +12,12 @@ export const Login = () => {
   const login = async () => {
     try {
       let res = await LoginAPI(credentails.email, credentails.password);
-      toast.success("Signed In to Linkedin!");
+      toast.success("Signed in to Golden!");
       localStorage.setItem("userEmail", res.user.email);
       navigate(routes.home);
     } catch (err) {
       console.log(err);
-      toast.error("Please Check your Credentials");
+      toast.error("Please check your credentials.");
     }
   };
 
