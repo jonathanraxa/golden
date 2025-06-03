@@ -10,7 +10,7 @@
 
     // ← Add or update these two lines:
     "moduleResolution": "node",
-    "esModuleInterop": true,
+    "esModuleInterop": true
 
     // (Optional if you’re using pure ESM packages; you can try "nodenext" instead of "node".)
     // "moduleResolution": "nodenext",

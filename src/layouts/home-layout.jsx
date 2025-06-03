@@ -15,4 +15,4 @@ export const HomeLayout = () => {
       <HomePage currentUser={currentUser} />
     </div>
   );
-}
+};

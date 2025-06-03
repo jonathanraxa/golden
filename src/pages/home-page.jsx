@@ -18,5 +18,4 @@ export const HomePage = ({ currentUser }) => {
     });
   }, []);
   return loading ? <div>Loading...</div> : <Home currentUser={currentUser} />;
-}
-
+};

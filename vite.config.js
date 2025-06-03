@@ -10,12 +10,12 @@ const __dirname = path.dirname(__filename);
 
 export default defineConfig({
   plugins: [
-    react(),            // Enables React support
-    tailwindcss()       // Enables Tailwind v4 processing
+    react(), // Enables React support
+    tailwindcss(), // Enables Tailwind v4 processing
   ],
   resolve: {
     alias: {
-      "@": path.resolve(__dirname, "./src") // “@/” → “src/”
-    }
-  }
+      "@": path.resolve(__dirname, "./src"), // “@/” → “src/”
+    },
+  },
 });
