@@ -90,10 +90,10 @@ export const Home = () => {
         {allPosts.map((post) => {
           return (
             <Card
-              className="min-h-auto bg-[whitesmoke] mt-[30px] border border-[#b7b7b7] rounded-[7px] flex flex-col pb-5"
+              className="px-2 min-h-auto bg-[whitesmoke] mt-[30px] border border-[#b7b7b7] rounded-[7px] flex flex-col pb-5"
               key={post.id}
             >
-              <CardHeader>
+              <CardHeader className="px-0 flex justify-between content-center">
                 <CardDescription className="px-2 text-sm leading-none font-small text-[#757575]">
                   {post.timeStamp}
                 </CardDescription>
