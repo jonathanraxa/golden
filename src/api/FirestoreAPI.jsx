@@ -1,4 +1,6 @@
 import { firestore } from "@/firebaseConfig";
+import moment from "moment";
+import { getUniqueID } from "@/components/helpers/getUniqueId";
 import {
   addDoc,
   collection,
@@ -7,18 +9,21 @@ import {
   deleteDoc,
 } from "firebase/firestore";
 import { toast } from "sonner";
-import moment from "moment";
 
-let dbRef = collection(firestore, "posts");
-let postsRef = collection(firestore, "posts");
+const dbRef = collection(firestore, "posts");
+const postsRef = collection(firestore, "posts");
 
 const currentTime = moment().format("LLL");
-const userEmail = localStorage.getItem("userEmail");
+const userRef = collection(firestore, "users");
 
-export const postStatus = (status) => {
+export const postStatus = ({ currentUser, status }) => {
   const formattedData = {
     status,
+    postId: getUniqueID(),
     timeStamp: currentTime,
+    userName: currentUser.name,
+    userEmail: currentUser.email,
+    userID: currentUser.id,
   };
 
   addDoc(dbRef, formattedData)
@@ -50,4 +55,26 @@ export const deletePost = (id) => {
   } catch (err) {
     console.log(err);
   }
+};
+
+export const postUserData = (object) => {
+  addDoc(userRef, object)
+    .then(() => {})
+    .catch((err) => {
+      console.log(err);
+    });
+};
+
+export const getCurrentUser = (setCurrentUser) => {
+  onSnapshot(userRef, (response) => {
+    setCurrentUser(
+      response.docs
+        .map((docs) => {
+          return { ...docs.data(), id: docs.id };
+        })
+        .filter((item) => {
+          return item.email === localStorage.getItem("userEmail");
+        })[0],
+    );
+  });
 };

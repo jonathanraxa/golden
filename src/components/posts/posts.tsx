@@ -1,0 +1,113 @@
+import React, { useState, useMemo } from "react";
+import { z } from "zod";
+import { Button } from "@/components/ui/button";
+import { useForm } from "react-hook-form";
+import { postStatus } from "@/api/FirestoreAPI";
+import { getPosts } from "@/api/FirestoreAPI";
+import {
+  Card,
+  CardHeader,
+  CardContent,
+  CardDescription,
+  CardAction,
+} from "@/components/ui/card";
+import { PostDropdown } from "@/components/home/post-dropdown";
+import {
+  Form,
+  FormControl,
+  FormDescription,
+  FormField,
+  FormItem,
+  FormMessage,
+} from "@/components/ui/form";
+import { Textarea } from "@/components/ui/textarea";
+
+const FormSchema = z.object({
+  post: z
+    .string()
+    .min(10, {
+      message: "Bio must be at least 10 characters.",
+    })
+    .max(160, {
+      message: "Bio must not be longer than 30 characters.",
+    }),
+});
+
+export const Posts = ({ currentUser }) => {
+  const [allPosts, setAllPosts] = useState([]);
+
+  const form = useForm<z.infer<typeof FormSchema>>({
+    defaultValues: {
+      post: "",
+    },
+  });
+
+  function onSubmit(data: z.infer<typeof FormSchema>) {
+    form.reset();
+    postStatus({ currentUser, status: data.post });
+  }
+  useMemo(() => {
+    getPosts(setAllPosts);
+  }, []);
+  return (
+    <>
+      <Form {...form}>
+        <form
+          onSubmit={form.handleSubmit(onSubmit)}
+          className="w-[100%] space-y-6"
+        >
+          <FormField
+            control={form.control}
+            name="post"
+            render={({ field }) => (
+              <FormItem>
+                <FormControl>
+                  <Textarea
+                    placeholder="What do you want to talk about?"
+                    className="resize-none h-[120px] bg-[whitesmoke] mt-[30px] border border-[#b7b7b7] rounded-[7px] flex justify-around items-center"
+                    {...form.register("post")}
+                    {...field}
+                  />
+                </FormControl>
+                <FormDescription>
+                  You can <span>@mention</span> other users and organizations.
+                </FormDescription>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <div>
+            <Button
+              className="bg-[#0077B5] hover:bg-[#006699] text-white font-sans text-base px-4 py-2 rounded"
+              type="submit"
+            >
+              Submit
+            </Button>
+          </div>
+        </form>
+      </Form>
+      <div className="flex flex-col gap-5 mt-5">
+        {allPosts.map((post) => {
+          return (
+            <Card
+              className="px-2 min-h-auto bg-[whitesmoke] mt-[30px] border border-[#b7b7b7] rounded-[7px] flex flex-col pb-5"
+              key={post.id}
+            >
+              <CardHeader className="px-0 flex justify-between content-center">
+                <CardDescription className="px-2 text-sm leading-none font-small text-[#757575]">
+                  {post.timeStamp}
+                </CardDescription>
+                <CardAction>
+                  <PostDropdown postId={post.id} />
+                </CardAction>
+              </CardHeader>
+              <CardContent className="px-2">
+                <p>{post.status}</p>
+              </CardContent>
+            </Card>
+          );
+        })}
+      </div>
+    </>
+  );
+};

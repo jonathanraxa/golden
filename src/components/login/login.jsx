@@ -22,7 +22,7 @@ export const Login = () => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center h-full">
+    <div className="flex flex-col items-center justify-center h-screen bg-white">
       <div className="flex flex-col items-center justify-center h-full">
         <h1 className="text-2xl">Sign in</h1>
         <p className="sub-heading mt-5">Giving back in your golden years</p>
@@ -32,7 +32,7 @@ export const Login = () => {
               setCredentials({ ...credentails, email: event.target.value })
             }
             type="email"
-            className="common-input"
+            className="input-common"
             placeholder="Email or Phone"
           />
           <Input
@@ -40,12 +40,12 @@ export const Login = () => {
               setCredentials({ ...credentails, password: event.target.value })
             }
             type="password"
-            className="common-input"
+            className="input-common"
             placeholder="input password"
           />
         </div>
 
-        <Button onClick={login} className="mt-5">
+        <Button onClick={login} className="button-start-common mt-5 w-[300px]">
           Sign in
         </Button>
 

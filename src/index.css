@@ -7,3 +7,28 @@
   color: #212121;
   background-color: rgba(224, 224, 224);
 }
+
+.input-common {
+  @apply h-[50px]
+    p-[10px]
+    bg-white
+    outline-none
+    border
+    border-[#212121]
+    text-[#212121]
+    font-sans
+    text-[16px];
+}
+
+.button-start-common {
+  @apply h-[50px]
+    cursor-pointer
+    bg-[#0073b1]
+    rounded-[30px]
+    outline-none
+    border-none
+    font-sans
+    font-semibold
+    text-white
+    text-[18px];
+}

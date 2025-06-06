@@ -25,11 +25,7 @@ export const PostDropdown = ({ postId }) => {
         >
           Delete
         </DropdownMenuItem>
-        <DropdownMenuItem
-          onClick={() => {}}
-        >
-          Edit
-        </DropdownMenuItem>
+        <DropdownMenuItem onClick={() => {}}>Edit</DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
   );
