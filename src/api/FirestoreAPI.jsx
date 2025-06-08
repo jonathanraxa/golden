@@ -6,8 +6,11 @@ import {
   collection,
   onSnapshot,
   doc,
-  deleteDoc,
   updateDoc,
+  query,
+  where,
+  deleteDoc,
+  orderBy,
 } from "firebase/firestore";
 import { toast } from "sonner";
 
@@ -35,6 +38,49 @@ export const postStatus = ({ currentUser, status }) => {
     .catch((err) => {
       console.log("Error: ", err);
     });
+};
+
+export const getStatus = (setAllStatus) => {
+  const q = query(postsRef, orderBy("timeStamp"));
+  onSnapshot(q, (response) => {
+    setAllStatus(
+      response.docs.map((docs) => {
+        return { ...docs.data(), id: docs.id };
+      }),
+    );
+  });
+};
+
+export const getAllUsers = (setAllUsers) => {
+  onSnapshot(userRef, (response) => {
+    setAllUsers(
+      response.docs.map((docs) => {
+        return { ...docs.data(), id: docs.id };
+      }),
+    );
+  });
+};
+
+export const getSingleStatus = (setAllStatus, id) => {
+  const singlePostQuery = query(postsRef, where("userID", "==", id));
+  onSnapshot(singlePostQuery, (response) => {
+    setAllStatus(
+      response.docs.map((docs) => {
+        return { ...docs.data(), id: docs.id };
+      }),
+    );
+  });
+};
+
+export const getSingleUser = (setCurrentUser, email) => {
+  const singleUserQuery = query(userRef, where("email", "==", email));
+  onSnapshot(singleUserQuery, (response) => {
+    setCurrentUser(
+      response.docs.map((docs) => {
+        return { ...docs.data(), id: docs.id };
+      })[0],
+    );
+  });
 };
 
 export const getPosts = (setAllStatus) => {

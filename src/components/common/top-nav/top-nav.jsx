@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { onLogout } from "@/api/AuthAPI";
+import { useNavigate } from "react-router-dom";
+import { routes } from "@/routes/routes";
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -11,7 +13,6 @@ import {
   NavigationMenuViewport,
 } from "@/components/ui/navigation-menu";
 import { Link } from "react-router-dom";
-import { routes } from "@/routes/routes";
 import {
   AiOutlineHome,
   AiOutlineUserSwitch,
@@ -23,17 +24,28 @@ import { BsBriefcase } from "react-icons/bs";
 
 export const TopNav = ({ currentUser }) => {
   const [popupVisible, setPopupVisible] = useState(false);
+  const navigate = useNavigate();
+
   const handleLogout = () => {
     onLogout();
   };
+
+  const handleProfileNav = () => {
+    navigate(routes.profile);
+  };
+
   const displayPopup = () => {
     setPopupVisible(!popupVisible);
   };
 
   return (
     <div className="w-full">
-      <NavigationMenu className=" h-[70px] bg-[rgba(255,255,255,0.87)] flex items-center justify-center">
-        <NavigationMenuList className="flex items-center justify-between w-[55%] ml-[30px]">
+      <NavigationMenu
+        className="group/navigation-menu relative flex-1 w-full !max-w-none h-[70px]
+            bg-[rgba(255,255,255,0.87)]
+            flex items-center justify-center"
+      >
+        <NavigationMenuList className="flex w-screen list-none gap-4 items-center justify-between pl-[2rem] pr-[2rem]">
           <NavigationMenuItem>
             <Link
               to={{
@@ -118,7 +130,7 @@ export const TopNav = ({ currentUser }) => {
               />
             </NavigationMenuTrigger>
             <NavigationMenuContent>
-              <NavigationMenuLink onClick={handleLogout}>
+              <NavigationMenuLink onClick={handleProfileNav}>
                 Profile
               </NavigationMenuLink>
               <NavigationMenuLink onClick={handleLogout}>
