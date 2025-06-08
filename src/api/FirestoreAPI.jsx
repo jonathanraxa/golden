@@ -7,6 +7,7 @@ import {
   onSnapshot,
   doc,
   deleteDoc,
+  updateDoc,
 } from "firebase/firestore";
 import { toast } from "sonner";
 
@@ -77,4 +78,16 @@ export const getCurrentUser = (setCurrentUser) => {
         })[0],
     );
   });
+};
+
+export const editProfile = (userID, payload) => {
+  let userToEdit = doc(userRef, userID);
+
+  updateDoc(userToEdit, payload)
+    .then(() => {
+      success("Profile has been updated successfully");
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 };

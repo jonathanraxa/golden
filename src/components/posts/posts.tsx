@@ -46,9 +46,11 @@ export const Posts = ({ currentUser }) => {
     form.reset();
     postStatus({ currentUser, status: data.post });
   }
+
   useMemo(() => {
     getPosts(setAllPosts);
   }, []);
+
   return (
     <>
       <Form {...form}>
