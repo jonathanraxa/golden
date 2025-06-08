@@ -92,6 +92,16 @@ export const ProfileEdit = ({ onEdit, currentUser }) => {
             />
           </div>
           <div className="mt-3">
+            <label>State</label>
+            <Input
+              onChange={getInput}
+              className="common-input"
+              placeholder="State"
+              name="state"
+              value={editInputs.state}
+            />
+          </div>
+          <div className="mt-3">
             <label>Company</label>
             <Input
               onChange={getInput}

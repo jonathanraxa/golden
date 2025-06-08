@@ -119,6 +119,9 @@ export const TopNav = ({ currentUser }) => {
             </NavigationMenuTrigger>
             <NavigationMenuContent>
               <NavigationMenuLink onClick={handleLogout}>
+                Profile
+              </NavigationMenuLink>
+              <NavigationMenuLink onClick={handleLogout}>
                 Logout
               </NavigationMenuLink>
             </NavigationMenuContent>

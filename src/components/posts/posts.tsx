@@ -4,12 +4,15 @@ import { Button } from "@/components/ui/button";
 import { useForm } from "react-hook-form";
 import { postStatus } from "@/api/FirestoreAPI";
 import { getPosts } from "@/api/FirestoreAPI";
+import { routes } from "@/routes/routes";
+import { useNavigate } from "react-router-dom";
 import {
   Card,
   CardHeader,
   CardContent,
   CardDescription,
   CardAction,
+  CardTitle,
 } from "@/components/ui/card";
 import { PostDropdown } from "@/components/home/post-dropdown";
 import {
@@ -35,6 +38,7 @@ const FormSchema = z.object({
 
 export const Posts = ({ currentUser }) => {
   const [allPosts, setAllPosts] = useState([]);
+  const navigate = useNavigate();
 
   const form = useForm<z.infer<typeof FormSchema>>({
     defaultValues: {
@@ -96,9 +100,25 @@ export const Posts = ({ currentUser }) => {
               key={post.id}
             >
               <CardHeader className="px-0 flex justify-between content-center">
-                <CardDescription className="px-2 text-sm leading-none font-small text-[#757575]">
-                  {post.timeStamp}
-                </CardDescription>
+                <div className="px-2">
+                  <CardTitle
+                    className="
+                             text-xl      
+                  font-extrabold
+                  text-gray-900 
+                  cursor-pointer
+                  hover:text-blue-600       
+                  transition-colors         
+                  duration-200     
+                  "
+                    onClick={() => navigate(routes.profile)}
+                  >
+                    {post.userName}
+                  </CardTitle>
+                  <CardDescription className="mt-2 text-sm leading-none font-small text-[#757575]">
+                    {post.timeStamp}
+                  </CardDescription>
+                </div>
                 <CardAction>
                   <PostDropdown postId={post.id} />
                 </CardAction>
