@@ -33,13 +33,7 @@ export const Loader = ({
   // - spins via animation
   return (
     <div
-      className={`
-        ${borderClass} 
-        ${colorClass} 
-        border-t-transparent 
-        rounded-full 
-        animate-spin
-      `}
+      className={` ${borderClass} ${colorClass} animate-spin rounded-full border-t-transparent`}
       style={{
         width: `${size}px`,
         height: `${size}px`,

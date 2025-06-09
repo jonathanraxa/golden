@@ -61,10 +61,10 @@ export const getAllUsers = (setAllUsers) => {
   });
 };
 
-export const getSingleStatus = (setAllStatus, id) => {
+export const getSingleStatus = (setAllPosts, id) => {
   const singlePostQuery = query(postsRef, where("userID", "==", id));
   onSnapshot(singlePostQuery, (response) => {
-    setAllStatus(
+    setAllPosts(
       response.docs.map((docs) => {
         return { ...docs.data(), id: docs.id };
       }),

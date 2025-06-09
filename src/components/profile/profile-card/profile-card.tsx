@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from "react";
-
+import { useLocation } from "react-router-dom";
 import {
   Card,
   CardAction,
@@ -10,10 +10,17 @@ import {
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { PostDropdown } from "@/components/home/post-dropdown";
-import { getPosts } from "@/api/FirestoreAPI";
+import { getPosts, getSingleStatus, getSingleUser } from "@/api/FirestoreAPI";
 
 export const ProfileCard = ({ currentUser, onEdit }) => {
+  const location = useLocation();
   const [allPosts, setAllPosts] = useState([]);
+
+  // currentProfile is the profile we selected
+  const [currentProfile, setCurrentProfile] = useState({});
+
+  const source =
+    Object.keys(currentProfile).length > 0 ? currentProfile : currentUser;
 
   const {
     imageLink,
@@ -27,17 +34,27 @@ export const ProfileCard = ({ currentUser, onEdit }) => {
     website,
     aboutMe,
     skills,
-  } = currentUser;
+  } = source;
 
   useMemo(() => {
     getPosts(setAllPosts);
   }, []);
 
+  useMemo(() => {
+    if (location?.state?.id) {
+      getSingleStatus(setAllPosts, location?.state?.id);
+    }
+
+    if (location?.state?.email) {
+      getSingleUser(setCurrentProfile, location?.state?.email);
+    }
+  }, []);
+
   return (
-    <div className="flex flex-col m-[5rem] w-screen">
-      <Card className="w-[100%] p-5 relative bg-[whitesmoke] border border-[#b7b7b7] rounded-[7px] min-h-100">
+    <div className="m-[5rem] flex w-screen flex-col">
+      <Card className="relative min-h-100 w-[100%] rounded-[7px] border border-[#b7b7b7] bg-[whitesmoke] p-5">
         <CardHeader>
-          <div className="w-[5rem] h-auto">
+          <div className="h-auto w-[5rem]">
             <img src={imageLink} />
           </div>
           <CardTitle>
@@ -46,16 +63,7 @@ export const ProfileCard = ({ currentUser, onEdit }) => {
           <CardDescription>{headline}</CardDescription>
           <CardAction>
             <Button
-              className="
-            cursor-pointer
-            bg-[#0073b1]
-            rounded-[30px]
-            outline-none
-            border-none
-            font-sans
-            font-semibold
-            text-white
-            text-[12px]"
+              className="cursor-pointer rounded-[30px] border-none bg-[#0073b1] font-sans text-[12px] font-semibold text-white outline-none"
               onClick={() => onEdit()}
             >
               Edit
@@ -88,11 +96,11 @@ export const ProfileCard = ({ currentUser, onEdit }) => {
           .map((post) => {
             return (
               <Card
-                className="px-2 min-h-auto bg-[whitesmoke] border border-[#b7b7b7] rounded-[7px] flex flex-col pb-5 max-w-1/2 mx-auto mt-4"
+                className="mx-auto mt-4 flex min-h-auto max-w-1/2 flex-col rounded-[7px] border border-[#b7b7b7] bg-[whitesmoke] px-2 pb-5"
                 key={post.id}
               >
-                <CardHeader className="px-0 flex justify-between content-center">
-                  <CardDescription className="px-2 text-sm leading-none font-small text-[#757575]">
+                <CardHeader className="flex content-center justify-between px-0">
+                  <CardDescription className="font-small px-2 text-sm leading-none text-[#757575]">
                     {post.timeStamp}
                   </CardDescription>
                   <CardAction>

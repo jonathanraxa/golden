@@ -20,7 +20,7 @@ export const TopNav = () => {
   return (
     <NavigationMenu
       viewport={false}
-      className="w-full h-[70px] bg-[rgba(255,255,255,0.87)] flex items-center"
+      className="flex h-[70px] w-full items-center bg-[rgba(255,255,255,0.87)]"
     >
       <NavigationMenuList className="flex justify-between">
         <NavigationMenuItem>

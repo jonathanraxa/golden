@@ -2,7 +2,7 @@ import React from "react";
 import { Posts } from "@/components/posts";
 export const Home = ({ currentUser }) => {
   return (
-    <div className="flex justify-center flex-col my-0 mx-auto w-[50%] mt-10">
+    <div className="mx-auto my-0 mt-10 flex w-[50%] flex-col justify-center">
       <Posts currentUser={currentUser} />
     </div>
   );

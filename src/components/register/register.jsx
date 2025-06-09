@@ -24,6 +24,7 @@ export const Register = () => {
         imageLink:
           "https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80",
       });
+      localStorage.setItem("userEmail", res.user.email);
       navigate("/home");
     } catch (err) {
       console.log(err);
@@ -32,10 +33,10 @@ export const Register = () => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center h-screen bg-white">
-      <div className="flex flex-col items-center justify-center h-full">
+    <div className="flex h-screen flex-col items-center justify-center bg-white">
+      <div className="flex h-full flex-col items-center justify-center">
         <h1 className="text-2xl">Giving back in your golden years</h1>
-        <div className="flex flex-col gap-2.5 w-[600px] mt-5">
+        <div className="mt-5 flex w-[600px] flex-col gap-2.5">
           <Input
             className="input-common"
             onChange={(event) =>
@@ -74,7 +75,7 @@ export const Register = () => {
           <p className="go-to-signup">
             Already in Golden?{" "}
             <span
-              className="text-blue-500 text-lg cursor-pointer"
+              className="cursor-pointer text-lg text-blue-500"
               onClick={() => navigate("/login")}
             >
               Sign in

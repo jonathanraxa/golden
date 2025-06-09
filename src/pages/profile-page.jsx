@@ -18,7 +18,7 @@ export const ProfilePage = ({ currentUser }) => {
     });
   }, []);
   return (
-    <div className="w-screen flex justify-center items-center">
+    <div className="flex w-screen items-center justify-center">
       {loading ? (
         <Loader size={48} colorClass="text-blue-600" borderClass="border-4" />
       ) : (

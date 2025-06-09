@@ -22,11 +22,11 @@ export const Login = () => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center h-screen bg-white">
-      <div className="flex flex-col items-center justify-center h-full">
+    <div className="flex h-screen flex-col items-center justify-center bg-white">
+      <div className="flex h-full flex-col items-center justify-center">
         <h1 className="text-2xl">Sign in</h1>
         <p className="sub-heading mt-5">Giving back in your golden years</p>
-        <div className="flex flex-col gap-2.5 w-[400px] mt-5">
+        <div className="mt-5 flex w-[400px] flex-col gap-2.5">
           <Input
             onChange={(event) =>
               setCredentials({ ...credentails, email: event.target.value })
@@ -54,7 +54,7 @@ export const Login = () => {
           <p className="go-to-signup">
             New to LinkedIn?{" "}
             <span
-              className="text-blue-500 text-lg cursor-pointer"
+              className="cursor-pointer text-lg text-blue-500"
               onClick={() => navigate("/register")}
             >
               Join now

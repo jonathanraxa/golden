@@ -70,7 +70,7 @@ export const Posts = ({ currentUser }) => {
                 <FormControl>
                   <Textarea
                     placeholder="What do you want to talk about?"
-                    className="resize-none h-[120px] bg-[whitesmoke] mt-[30px] border border-[#b7b7b7] rounded-[7px] flex justify-around items-center"
+                    className="mt-[30px] flex h-[120px] resize-none items-center justify-around rounded-[7px] border border-[#b7b7b7] bg-[whitesmoke]"
                     {...form.register("post")}
                     {...field}
                   />
@@ -84,7 +84,7 @@ export const Posts = ({ currentUser }) => {
           />
           <div>
             <Button
-              className="bg-[#0077B5] hover:bg-[#006699] text-white font-sans text-base px-4 py-2 rounded"
+              className="rounded bg-[#0077B5] px-4 py-2 font-sans text-base text-white hover:bg-[#006699]"
               type="submit"
             >
               Submit
@@ -92,30 +92,22 @@ export const Posts = ({ currentUser }) => {
           </div>
         </form>
       </Form>
-      <div className="flex flex-col gap-5 mt-5">
+      <div className="mt-5 flex flex-col gap-5">
         {allPosts.map((post) => {
           return (
             <Card
-              className="px-2 min-h-auto bg-[whitesmoke] mt-[30px] border border-[#b7b7b7] rounded-[7px] flex flex-col pb-5"
+              className="mt-[30px] flex min-h-auto flex-col rounded-[7px] border border-[#b7b7b7] bg-[whitesmoke] px-2 pb-5"
               key={post.id}
             >
-              <CardHeader className="px-0 flex justify-between content-center">
+              <CardHeader className="flex content-center justify-between px-0">
                 <div className="px-2">
                   <CardTitle
-                    className="
-                             text-xl      
-                  font-extrabold
-                  text-gray-900 
-                  cursor-pointer
-                  hover:text-blue-600       
-                  transition-colors         
-                  duration-200     
-                  "
+                    className="cursor-pointer text-xl font-extrabold text-gray-900 transition-colors duration-200 hover:text-blue-600"
                     onClick={() => navigate(routes.profile)}
                   >
                     {post.userName}
                   </CardTitle>
-                  <CardDescription className="mt-2 text-sm leading-none font-small text-[#757575]">
+                  <CardDescription className="font-small mt-2 text-sm leading-none text-[#757575]">
                     {post.timeStamp}
                   </CardDescription>
                 </div>

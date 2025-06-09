@@ -28,21 +28,12 @@ export const ProfileEdit = ({ onEdit, currentUser }) => {
   };
 
   return (
-    <Card className="w-[100%] p-5 relative bg-[whitesmoke] border border-[#b7b7b7] rounded-[7px] m-[5rem]">
+    <Card className="relative m-[5rem] w-[100%] rounded-[7px] border border-[#b7b7b7] bg-[whitesmoke] p-5">
       <CardHeader>
         <CardTitle className="flex justify-start">Edit profile</CardTitle>
         <CardAction>
           <Button
-            className="
-            cursor-pointer
-            bg-[#0073b1]
-            rounded-[30px]
-            outline-none
-            border-none
-            font-sans
-            font-semibold
-            text-white
-            text-[12px]"
+            className="cursor-pointer rounded-[30px] border-none bg-[#0073b1] font-sans text-[12px] font-semibold text-white outline-none"
             onClick={() => onEdit()}
           >
             <AiOutlineClose className="close-icon" onClick={onEdit} size={25} />
@@ -166,19 +157,7 @@ export const ProfileEdit = ({ onEdit, currentUser }) => {
       </CardContent>
       <CardFooter className="flex justify-center">
         <Button
-          className="
-            w-[300px]
-            h-[50px]
-            cursor-pointer
-            bg-[#0073b1]
-            rounded-[30px]
-            outline-none
-            border-none
-            font-sans
-            font-semibold
-            text-white
-            text-[18px]
-            mt-[20px]"
+          className="mt-[20px] h-[50px] w-[300px] cursor-pointer rounded-[30px] border-none bg-[#0073b1] font-sans text-[18px] font-semibold text-white outline-none"
           onClick={updateProfileData}
         >
           Save

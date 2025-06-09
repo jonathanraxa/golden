@@ -9,26 +9,9 @@
 }
 
 .input-common {
-  @apply h-[50px]
-    p-[10px]
-    bg-white
-    outline-none
-    border
-    border-[#212121]
-    text-[#212121]
-    font-sans
-    text-[16px];
+  @apply h-[50px] border border-[#212121] bg-white p-[10px] font-sans text-[16px] text-[#212121] outline-none;
 }
 
 .button-start-common {
-  @apply h-[50px]
-    cursor-pointer
-    bg-[#0073b1]
-    rounded-[30px]
-    outline-none
-    border-none
-    font-sans
-    font-semibold
-    text-white
-    text-[18px];
+  @apply h-[50px] cursor-pointer rounded-[30px] border-none bg-[#0073b1] font-sans text-[18px] font-semibold text-white outline-none;
 }
