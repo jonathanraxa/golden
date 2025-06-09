@@ -1,17 +1,7 @@
-import React, { useState } from "react";
-import { onLogout } from "@/api/AuthAPI";
-import { useNavigate } from "react-router-dom";
-import { routes } from "@/routes/routes";
-import {
-  NavigationMenu,
-  NavigationMenuContent,
-  NavigationMenuItem,
-  NavigationMenuLink,
-  NavigationMenuList,
-  NavigationMenuTrigger,
-  navigationMenuTriggerStyle,
-} from "@/components/ui/navigation-menu";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import LinkedinLogo from "@/assets/linkedinLogo.png";
+// import user from "@/assets/user";
+// import SearchUsers from "../SearchUsers";
 import {
   AiOutlineHome,
   AiOutlineUserSwitch,
@@ -19,74 +9,121 @@ import {
   AiOutlineMessage,
   AiOutlineBell,
 } from "react-icons/ai";
+import { useNavigate } from "react-router-dom";
 import { BsBriefcase } from "react-icons/bs";
+import { getAllUsers } from "../../../api/FirestoreAPI";
+import ProfilePopup from "./top-nav-profile-popup";
+
+import "./index.scss";
 
 export const TopNav = ({ currentUser }) => {
   const [popupVisible, setPopupVisible] = useState(false);
-  const navigate = useNavigate();
-
-  const handleLogout = () => {
-    onLogout();
-  };
-
-  const handleProfileNav = () => {
-    navigate(routes.profile);
+  const [isSearch, setIsSearch] = useState(false);
+  const [users, setUsers] = useState([]);
+  const [filteredUsers, setFilteredUsers] = useState([]);
+  const [searchInput, setSearchInput] = useState("");
+  let navigate = useNavigate();
+  const goToRoute = (route) => {
+    navigate(route);
   };
 
   const displayPopup = () => {
     setPopupVisible(!popupVisible);
   };
 
+  const openUser = (user) => {
+    navigate("/profile", {
+      state: {
+        id: user.id,
+        email: user.email,
+      },
+    });
+  };
+
+  const handleSearch = () => {
+    if (searchInput !== "") {
+      let searched = users.filter((user) => {
+        return Object.values(user)
+          .join("")
+          .toLowerCase()
+          .includes(searchInput.toLowerCase());
+      });
+
+      setFilteredUsers(searched);
+    } else {
+      setFilteredUsers(users);
+    }
+  };
+
+  useEffect(() => {
+    let debounced = setTimeout(() => {
+      handleSearch();
+    }, 1000);
+
+    return () => clearTimeout(debounced);
+  }, [searchInput]);
+
+  useEffect(() => {
+    getAllUsers(setUsers);
+  }, []);
   return (
-    <div className="w-full">
-      <NavigationMenu
-        viewport={false}
-        className="group/navigation-menu relative flex h-[70px] w-full !max-w-none flex-1 items-center justify-center bg-[rgba(255,255,255,0.87)]"
-      >
-        <NavigationMenuList>
-          <NavigationMenuItem>
-            <AiOutlineSearch size={30} className="react-icon" />
-          </NavigationMenuItem>
-          <NavigationMenuItem>
-            <AiOutlineHome
-              size={30}
-              className="react-icon"
-              onClick={() => navigate(routes.home)}
-            />
-          </NavigationMenuItem>
+    <div className="topbar-main">
+      {popupVisible ? (
+        <div className="popup-position">
+          <ProfilePopup />
+        </div>
+      ) : (
+        <></>
+      )}
 
-          <NavigationMenuItem>
-            <NavigationMenuLink
-              asChild
-              className={navigationMenuTriggerStyle()}
-            >
-              <Link to="/docs">Docs</Link>
-            </NavigationMenuLink>
-          </NavigationMenuItem>
+      <img className="linkedin-logo" src={LinkedinLogo} alt="LinkedinLogo" />
+      {isSearch ? (
+        <></>
+      ) : (
+        <div className="react-icons">
+          <AiOutlineSearch
+            size={30}
+            className="react-icon"
+            onClick={() => setIsSearch(true)}
+          />
+          <AiOutlineHome
+            size={30}
+            className="react-icon"
+            onClick={() => goToRoute("/home")}
+          />
+          <AiOutlineUserSwitch
+            size={30}
+            className="react-icon"
+            onClick={() => goToRoute("/connections")}
+          />
+          <BsBriefcase size={30} className="react-icon" />
+          <AiOutlineMessage size={30} className="react-icon" />
+          <AiOutlineBell size={30} className="react-icon" />
+        </div>
+      )}
+      <img
+        className="user-logo"
+        src={currentUser?.imageLink}
+        alt="user"
+        onClick={displayPopup}
+      />
 
-          <NavigationMenuItem>
-            <NavigationMenuTrigger>
-              <AiOutlineUserSwitch
-                size={30}
-                className="cursor-pointer text-[#787878]"
-                onClick={() => navigate("/connections")}
-              />
-            </NavigationMenuTrigger>
-            <NavigationMenuContent>
-              <ul className="grid w-[200px] gap-4">
-                <li>
-                  <NavigationMenuLink onClick={handleProfileNav}>
-                    Profile
-                  </NavigationMenuLink>
-                  <NavigationMenuLink onClick={handleLogout}>
-                    Logout
-                  </NavigationMenuLink>
-                </li>
-              </ul>
-            </NavigationMenuContent>
-          </NavigationMenuItem>
-        </NavigationMenuList>
-      </NavigationMenu>
+      {searchInput.length === 0 ? (
+        <></>
+      ) : (
+        <div className="search-results">
+          {filteredUsers.length === 0 ? (
+            <div className="search-inner">No Results Found..</div>
+          ) : (
+            filteredUsers.map((user) => (
+              <div className="search-inner" onClick={() => openUser(user)}>
+                <img src={user.imageLink} />
+                <p className="name">{user.name}</p>
+              </div>
+            ))
+          )}
+        </div>
+      )}
     </div>
   );
 };
