@@ -67,20 +67,18 @@ export const TopNav = ({ currentUser }) => {
     getAllUsers(setUsers);
   }, []);
   return (
-    <div className="topbar-main">
-      {popupVisible ? (
-        <div className="popup-position">
-          <ProfilePopup />
-        </div>
-      ) : (
-        <></>
-      )}
-
-      <img className="linkedin-logo" src={LinkedinLogo} alt="LinkedinLogo" />
+    <div className="flex h-[70px] w-full items-center justify-between bg-[rgba(255,255,255,0.87)]">
+      <div>
+        <img
+          className="ml-[20px] w-[65px]"
+          src={LinkedinLogo}
+          alt="LinkedinLogo"
+        />
+      </div>
       {isSearch ? (
         <></>
       ) : (
-        <div className="react-icons">
+        <div className="ml-[30px] flex w-[55%] items-center justify-between">
           <AiOutlineSearch
             size={30}
             className="react-icon"
@@ -101,12 +99,14 @@ export const TopNav = ({ currentUser }) => {
           <AiOutlineBell size={30} className="react-icon" />
         </div>
       )}
-      <img
-        className="user-logo"
-        src={currentUser?.imageLink}
-        alt="user"
-        onClick={displayPopup}
-      />
+      <div className="pr-[3rem]">
+        <img
+          className="user-logo"
+          src={currentUser?.imageLink}
+          alt="user"
+          onClick={displayPopup}
+        />
+      </div>
 
       {searchInput.length === 0 ? (
         <></>
@@ -123,6 +123,13 @@ export const TopNav = ({ currentUser }) => {
             ))
           )}
         </div>
+      )}
+      {popupVisible ? (
+        <div className="popup-position">
+          <ProfilePopup />
+        </div>
+      ) : (
+        <></>
       )}
     </div>
   );

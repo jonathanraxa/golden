@@ -15,3 +15,7 @@
 .button-start-common {
   @apply h-[50px] cursor-pointer rounded-[30px] border-none bg-[#0073b1] font-sans text-[18px] font-semibold text-white outline-none;
 }
+
+.react-icon {
+  @apply cursor-pointer text-[#787878] hover:text-black;
+}
