@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import LinkedinLogo from "@/assets/linkedinLogo.png";
+import { TopNavProfilePopup } from "./top-nav-profile-popup";
 // import user from "@/assets/user";
 // import SearchUsers from "../SearchUsers";
 import {
@@ -12,7 +13,6 @@ import {
 import { useNavigate } from "react-router-dom";
 import { BsBriefcase } from "react-icons/bs";
 import { getAllUsers } from "../../../api/FirestoreAPI";
-import ProfilePopup from "./top-nav-profile-popup";
 
 import "./index.scss";
 
@@ -67,7 +67,7 @@ export const TopNav = ({ currentUser }) => {
     getAllUsers(setUsers);
   }, []);
   return (
-    <div className="flex h-[70px] w-full items-center justify-between bg-[rgba(255,255,255,0.87)]">
+    <div className="fixed top-0 left-0 z-[105] flex h-[70px] w-screen items-center justify-between bg-[white]">
       <div>
         <img
           className="ml-[20px] w-[65px]"
@@ -124,7 +124,7 @@ export const TopNav = ({ currentUser }) => {
           )}
         </div>
       )}
-      {popupVisible ? <ProfilePopup /> : <></>}
+      {popupVisible ? <TopNavProfilePopup /> : <></>}
     </div>
   );
 };

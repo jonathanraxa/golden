@@ -133,17 +133,6 @@ export const ProfileEdit = ({ onEdit, currentUser }) => {
             />
           </div>
           <div className="mt-3">
-            <label>About</label>
-            <Textarea
-              placeholder="About Me"
-              className="common-textArea"
-              onChange={getInput}
-              rows={5}
-              name="aboutMe"
-              value={editInputs.aboutMe}
-            />
-          </div>
-          <div className="mt-3">
             <label>Skills</label>
             <Input
               onChange={getInput}
@@ -151,6 +140,17 @@ export const ProfileEdit = ({ onEdit, currentUser }) => {
               placeholder="Skill"
               name="skills"
               value={editInputs.skills}
+            />
+          </div>
+          <div className="mt-3">
+            <label>About</label>
+            <Textarea
+              placeholder="About Me"
+              className="common-textArea whitespace-pre-wrap"
+              onChange={getInput}
+              rows={5}
+              name="aboutMe"
+              value={editInputs.aboutMe}
             />
           </div>
         </div>

@@ -54,9 +54,10 @@ export const ProfileCard = ({ currentUser, onEdit }) => {
     <div className="m-[5rem] flex w-screen flex-col">
       <Card className="relative min-h-100 w-[100%] rounded-[7px] border border-[#b7b7b7] bg-[whitesmoke] p-5">
         <CardHeader>
-          <div className="h-auto w-[5rem]">
-            <img src={imageLink} />
-          </div>
+          <img
+            src={imageLink}
+            className="h-[90px] w-[90px] cursor-pointer rounded-[50%] object-cover"
+          />
           <CardTitle>
             <h2 className="text-2xl">{name}</h2>
           </CardTitle>
@@ -77,7 +78,7 @@ export const ProfileCard = ({ currentUser, onEdit }) => {
                 {industry} | {skills}
               </p>
               <p className="mt-3">
-                {city}, {state} - {country}
+                {city}, {state} | {country}
               </p>
             </div>
             <div>
@@ -85,7 +86,8 @@ export const ProfileCard = ({ currentUser, onEdit }) => {
               <p>{website}</p>
             </div>
           </div>
-          <p>{aboutMe}</p>
+          <h2 className="mt-10 text-2xl">About</h2>
+          <p className="font-sans break-words whitespace-pre-wrap">{aboutMe}</p>
         </CardContent>
       </Card>
       <div>
