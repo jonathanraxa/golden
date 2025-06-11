@@ -60,7 +60,7 @@ export const Posts = ({ currentUser }) => {
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
-          className="w-[100%] space-y-6"
+          className="mt-10 w-[100%] space-y-6"
         >
           <FormField
             control={form.control}

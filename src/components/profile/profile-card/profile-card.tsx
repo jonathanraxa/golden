@@ -1,6 +1,12 @@
 import React, { useState, useMemo } from "react";
 import { useLocation } from "react-router-dom";
 import {
+  ProfileAboutEdit,
+  ProfileAboutCard,
+} from "@/components/profile/profile-about-card";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPenToSquare } from "@fortawesome/free-solid-svg-icons";
+import {
   Card,
   CardAction,
   CardContent,
@@ -15,6 +21,7 @@ import { getPosts, getSingleStatus, getSingleUser } from "@/api/FirestoreAPI";
 export const ProfileCard = ({ currentUser, onEdit }) => {
   const location = useLocation();
   const [allPosts, setAllPosts] = useState([]);
+  const [isEditAbout, setIsEditAbout] = useState(false);
 
   // currentProfile is the profile we selected
   const [currentProfile, setCurrentProfile] = useState({});
@@ -50,9 +57,13 @@ export const ProfileCard = ({ currentUser, onEdit }) => {
     }
   }, []);
 
+  const onEditAbout = () => {
+    setIsEditAbout(!isEditAbout);
+  };
+
   return (
     <div className="m-[5rem] flex w-screen flex-col">
-      <Card className="relative min-h-100 w-[100%] rounded-[7px] border border-[#b7b7b7] bg-[whitesmoke] p-5">
+      <Card className="relative min-h-10 w-[100%] rounded-[7px] border border-[#b7b7b7] bg-[whitesmoke] p-5">
         <CardHeader>
           <img
             src={imageLink}
@@ -64,10 +75,10 @@ export const ProfileCard = ({ currentUser, onEdit }) => {
           <CardDescription>{headline}</CardDescription>
           <CardAction>
             <Button
-              className="cursor-pointer rounded-[30px] border-none bg-[#0073b1] font-sans text-[12px] font-semibold text-white outline-none"
+              className="cursor-pointer rounded-[30px] border-none bg-[#0073b1] text-white outline-none"
               onClick={() => onEdit()}
             >
-              Edit
+              <FontAwesomeIcon icon={faPenToSquare} />
             </Button>
           </CardAction>
         </CardHeader>
@@ -86,11 +97,14 @@ export const ProfileCard = ({ currentUser, onEdit }) => {
               <p>{website}</p>
             </div>
           </div>
-          <h2 className="mt-10 text-2xl">About</h2>
-          <p className="font-sans break-words whitespace-pre-wrap">{aboutMe}</p>
         </CardContent>
       </Card>
-      <div>
+      {isEditAbout ? (
+        <ProfileAboutEdit onEditAbout={onEditAbout} currentUser={currentUser} />
+      ) : (
+        <ProfileAboutCard currentUser={currentUser} onEditAbout={onEditAbout} />
+      )}
+      <div className="mt-[3rem]">
         {allPosts
           .filter(
             (item) => item.userEmail === localStorage.getItem("userEmail"),
