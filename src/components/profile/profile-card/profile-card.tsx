@@ -4,6 +4,7 @@ import {
   ProfileAboutEdit,
   ProfileAboutCard,
 } from "@/components/profile/profile-about-card";
+import { PostsView } from "@/components/posts";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPenToSquare } from "@fortawesome/free-solid-svg-icons";
 import {
@@ -39,8 +40,8 @@ export const ProfileCard = ({ currentUser, onEdit }) => {
     company,
     industry,
     website,
-    aboutMe,
     skills,
+    timeStamp,
   } = source;
 
   useMemo(() => {
@@ -69,10 +70,14 @@ export const ProfileCard = ({ currentUser, onEdit }) => {
             src={imageLink}
             className="h-[90px] w-[90px] cursor-pointer rounded-[50%] object-cover"
           />
-          <CardTitle>
-            <h2 className="text-2xl">{name}</h2>
-          </CardTitle>
-          <CardDescription>{headline}</CardDescription>
+          <div className="px-2">
+            <CardTitle className="cursor-pointer text-xl font-extrabold text-gray-900 transition-colors duration-200 hover:text-blue-600">
+              {name}
+            </CardTitle>
+            <CardDescription className="font-small mt-2 text-sm leading-none text-[#757575]">
+              {timeStamp}
+            </CardDescription>
+          </div>
           <CardAction>
             <Button
               className="cursor-pointer rounded-[30px] border-none bg-[#0073b1] text-white outline-none"
@@ -110,24 +115,7 @@ export const ProfileCard = ({ currentUser, onEdit }) => {
             (item) => item.userEmail === localStorage.getItem("userEmail"),
           )
           .map((post) => {
-            return (
-              <Card
-                className="mx-auto mt-4 flex min-h-auto max-w-1/2 flex-col rounded-[7px] border border-[#b7b7b7] bg-[whitesmoke] px-2 pb-5"
-                key={post.id}
-              >
-                <CardHeader className="flex content-center justify-between px-0">
-                  <CardDescription className="font-small px-2 text-sm leading-none text-[#757575]">
-                    {post.timeStamp}
-                  </CardDescription>
-                  <CardAction>
-                    <PostDropdown postId={post.id} />
-                  </CardAction>
-                </CardHeader>
-                <CardContent className="px-2">
-                  <p>{post.status}</p>
-                </CardContent>
-              </Card>
-            );
+            return <PostsView post={post} />;
           })}
       </div>
     </div>
