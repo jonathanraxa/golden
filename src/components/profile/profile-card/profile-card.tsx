@@ -115,7 +115,7 @@ export const ProfileCard = ({ currentUser, onEdit }) => {
             (item) => item.userEmail === localStorage.getItem("userEmail"),
           )
           .map((post) => {
-            return <PostsView post={post} />;
+            return <PostsView post={post} currentUser={currentUser} />;
           })}
       </div>
     </div>
