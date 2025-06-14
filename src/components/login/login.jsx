@@ -55,7 +55,7 @@ export const Login = () => {
             New to LinkedIn?{" "}
             <span
               className="cursor-pointer text-lg text-blue-500"
-              onClick={() => navigate("/register")}
+              onClick={() => navigate(routes.register)}
             >
               Join now
             </span>

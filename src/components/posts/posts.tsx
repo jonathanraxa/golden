@@ -14,9 +14,9 @@ export const Posts = ({ currentUser }) => {
     <>
       <PostsForm currentUser={currentUser} />
       <div className="mt-5 flex flex-col gap-5">
-        {allPosts.map((post) => {
-          return <PostsView post={post} currentUser={currentUser} />;
-        })}
+        {allPosts.map((post) => (
+          <PostsView post={post} currentUser={currentUser} />
+        ))}
       </div>
     </>
   );

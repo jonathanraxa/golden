@@ -29,10 +29,12 @@ export const LikeButton = ({ postId, currentUser }) => {
     postComment(postId, comment, currentTime, currentUser?.name);
     setComment("");
   };
+
   useMemo(() => {
     getLikesByUser(currentUser?.id, postId, setLiked, setLikesCount);
     getComments(postId, setComments);
   }, [currentUser?.id, postId]);
+
   return (
     <div className="w-full">
       <p className="text-sm font-normal text-[rgba(80,78,78,0.84)]">
