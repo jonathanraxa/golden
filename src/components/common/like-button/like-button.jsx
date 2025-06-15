@@ -3,12 +3,8 @@ import moment from "moment";
 import { AiOutlineComment } from "react-icons/ai";
 import { BsFillHandThumbsUpFill, BsHandThumbsUp } from "react-icons/bs";
 import { Textarea, Button } from "@/components/ui";
-import {
-  likePost,
-  getLikesByUser,
-  postComment,
-  getComments,
-} from "@/api/FirestoreAPI";
+import { likePost, getLikesByUser } from "@/api/FirestoreAPI";
+import { postComment, getComments } from "@/api/comments";
 import { CommentView } from "./comment-view";
 
 const currentTime = moment().format("LLL");
@@ -43,6 +39,7 @@ export const LikeButton = ({ postId, currentUser }) => {
       </p>
 
       <hr className="mt-5 mb-5 border-t border-gray-400" />
+
       <div className="flex justify-around">
         <div className="flex cursor-pointer items-center" onClick={handleLike}>
           {liked ? (
