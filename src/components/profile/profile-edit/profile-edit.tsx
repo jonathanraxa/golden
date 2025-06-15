@@ -3,7 +3,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { AiOutlineClose } from "react-icons/ai";
-import { editProfile } from "@/api/FirestoreAPI";
+import { editProfile } from "@/api";
 import {
   Card,
   CardAction,

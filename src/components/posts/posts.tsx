@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from "react";
-import { getPosts } from "@/api/FirestoreAPI";
+import { getPosts } from "@/api";
 import { PostsForm } from "./posts-form";
 import { PostsView } from "./posts-view";
 

@@ -11,7 +11,7 @@ import {
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { PostDropdown } from "@/components/home/post-dropdown";
-import { getPosts, getSingleStatus, getSingleUser } from "@/api/FirestoreAPI";
+import { getPosts, getSingleStatus, getSingleUser } from "@/api";
 
 export const ProfileAboutCard = ({ currentUser, onEditAbout }) => {
   // currentProfile is the profile we selected

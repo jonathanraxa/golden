@@ -7,7 +7,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { deletePost } from "@/api/FirestoreAPI";
+import { deletePost } from "@/api";
 
 export const PostDropdown = ({ postId }) => {
   return (

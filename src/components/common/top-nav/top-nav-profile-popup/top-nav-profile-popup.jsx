@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { onLogout } from "@/api/AuthAPI";
-import { getCurrentUser } from "@/api/FirestoreAPI";
+import { getCurrentUser } from "@/api";
 import { Button } from "@/components/ui/button";
 import { routes } from "@/routes/routes";
 import {

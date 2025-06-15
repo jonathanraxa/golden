@@ -7,7 +7,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { deleteComment } from "@/api/comments";
+import { deleteComment } from "@/api";
 
 export const CommentDropdown = ({ commentId }) => {
   return (

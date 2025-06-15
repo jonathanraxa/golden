@@ -2,7 +2,7 @@ import React from "react";
 import { z } from "zod";
 import { Button } from "@/components/ui/button";
 import { useForm } from "react-hook-form";
-import { postStatus } from "@/api/FirestoreAPI";
+import { postStatus } from "@/api";
 import {
   Form,
   FormControl,

@@ -3,8 +3,8 @@ import moment from "moment";
 import { AiOutlineComment } from "react-icons/ai";
 import { BsFillHandThumbsUpFill, BsHandThumbsUp } from "react-icons/bs";
 import { Textarea, Button } from "@/components/ui";
-import { likePost, getLikesByUser } from "@/api/FirestoreAPI";
-import { postComment, getComments } from "@/api/comments";
+import { likePost, getLikesByUser } from "@/api";
+import { postComment, getComments } from "@/api";
 import { CommentView } from "./comment-view";
 
 const currentTime = moment().format("LLL");

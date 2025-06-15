@@ -4,7 +4,7 @@ import { toast } from "react-toastify";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { RegisterAPI } from "@/api/AuthAPI";
-import { postUserData } from "@/api/FirestoreAPI";
+import { postUserData } from "@/api";
 import { getUniqueID } from "@/components/helpers/getUniqueId";
 
 export const Register = () => {

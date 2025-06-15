@@ -12,7 +12,7 @@ import {
 } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
 import { BsBriefcase } from "react-icons/bs";
-import { getAllUsers } from "../../../api/FirestoreAPI";
+import { getAllUsers } from "@/api";
 
 import "./index.scss";
 

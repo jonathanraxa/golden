@@ -1,5 +1,5 @@
 import React, { useMemo, useState } from "react";
-import { getCurrentUser } from "@/api/FirestoreAPI";
+import { getCurrentUser } from "@/api";
 import { ProfilePage } from "@/pages/profile-page";
 import { TopNav } from "@/components/common";
 
