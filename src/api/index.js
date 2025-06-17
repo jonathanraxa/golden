@@ -18,6 +18,8 @@ import {
 
 import { likePost, getLikesByUser } from "./likes";
 
+import { uploadImage, uploadPostImage } from "./image-upload";
+
 export {
   postComment,
   deleteComment,
@@ -34,4 +36,6 @@ export {
   editProfile,
   likePost,
   getLikesByUser,
+  uploadImage,
+  uploadPostImage,
 };

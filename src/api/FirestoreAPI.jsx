@@ -1,3 +1,5 @@
+// Keeping this file here for now as a reference
+
 import { firestore } from "@/firebaseConfig";
 import {
   addDoc,
