@@ -5,6 +5,7 @@ import {
   getStatus,
   deletePost,
   getPosts,
+  updatePost,
   getSingleStatus,
 } from "./posts";
 
@@ -28,6 +29,7 @@ export {
   getStatus,
   deletePost,
   getPosts,
+  updatePost,
   getSingleStatus,
   getAllUsers,
   getSingleUser,

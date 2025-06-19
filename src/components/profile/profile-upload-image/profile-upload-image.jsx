@@ -43,6 +43,7 @@ export const ProfileUploadImage = ({
             key="submit"
             type="primary"
             onClick={uploadImage}
+            className="button-start-common mt-5"
           >
             Upload Profile Picture
           </Button>

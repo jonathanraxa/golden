@@ -9,6 +9,7 @@ export const uploadImage = (
   setProgress,
   setCurrentImage,
 ) => {
+  console.log("file: ", file, "id: ", id);
   const profilePicsRef = ref(storage, `profileImages/${file.name}`);
   const uploadTask = uploadBytesResumable(profilePicsRef, file);
 

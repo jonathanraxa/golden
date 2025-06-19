@@ -9,7 +9,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { deletePost } from "@/api";
 
-export const PostDropdown = ({ postId }) => {
+export const PostDropdown = ({ postId, onEditPost }) => {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -25,7 +25,7 @@ export const PostDropdown = ({ postId }) => {
         >
           Delete
         </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => {}}>Edit</DropdownMenuItem>
+        <DropdownMenuItem onClick={onEditPost}>Edit</DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
   );

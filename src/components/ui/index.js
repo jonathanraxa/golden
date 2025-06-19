@@ -1,5 +1,13 @@
 import { Button } from "./button";
-import { Card } from "./card";
+import {
+  Card,
+  CardHeader,
+  CardContent,
+  CardDescription,
+  CardAction,
+  CardTitle,
+  CardFooter,
+} from "./card";
 import {
   Dialog,
   DialogClose,
@@ -25,6 +33,12 @@ export {
   // Sonner,
   Button,
   Card,
+  CardHeader,
+  CardContent,
+  CardDescription,
+  CardAction,
+  CardTitle,
+  CardFooter,
   Dialog,
   DialogClose,
   DialogContent,

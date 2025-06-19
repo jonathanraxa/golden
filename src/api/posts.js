@@ -57,6 +57,16 @@ export const deletePost = (id) => {
   }
 };
 
+export const updatePost = (id, status) => {
+  let docToUpdate = doc(postsRef, id);
+  try {
+    updateDoc(docToUpdate, { status });
+    success("Post has been updated!");
+  } catch (err) {
+    console.log(err);
+  }
+};
+
 export const getPosts = (setAllStatus) => {
   onSnapshot(postsRef, (response) => {
     setAllStatus(
