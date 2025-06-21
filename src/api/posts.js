@@ -1,4 +1,5 @@
 import { firestore } from "@/firebaseConfig";
+import { getUniqueID } from "@/components/helpers/getUniqueId";
 import moment from "moment";
 import {
   addDoc,
@@ -61,7 +62,7 @@ export const updatePost = (id, status) => {
   let docToUpdate = doc(postsRef, id);
   try {
     updateDoc(docToUpdate, { status });
-    success("Post has been updated!");
+    toast("Post has been updated!");
   } catch (err) {
     console.log(err);
   }

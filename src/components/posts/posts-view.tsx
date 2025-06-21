@@ -11,7 +11,6 @@ import {
   CardFooter,
 } from "@/components/ui";
 import { PostActions } from "@/components/posts/post-actions";
-import { PostEditView } from "@/components/posts/post-edit-view";
 import { LikeButton } from "@/components/common/like-button";
 
 export const PostsView = ({ post, currentUser }) => {
@@ -42,18 +41,13 @@ export const PostsView = ({ post, currentUser }) => {
           </div>
           {!editPostView && (
             <CardAction>
-              <PostActions postId={post.id} onEditPost={onEditPost} />
+              <PostActions post={post} />
             </CardAction>
           )}
         </CardHeader>
-        {editPostView ? (
-          <PostEditView post={post} setEditPostView={setEditPostView} />
-        ) : (
-          <CardContent className="px-2">
-            <p>{post.status}</p>
-          </CardContent>
-        )}
-
+        <CardContent className="px-2">
+          <p>{post.status}</p>
+        </CardContent>
         <CardFooter className="px-2">
           <LikeButton postId={post.id} currentUser={currentUser} />
         </CardFooter>
