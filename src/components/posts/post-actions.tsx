@@ -28,10 +28,10 @@ const FormSchema = z.object({
   post: z
     .string()
     .min(10, {
-      message: "Bio must be at least 10 characters.",
+      message: "Post must be at least 2 characters.",
     })
     .max(160, {
-      message: "Bio must not be longer than 30 characters.",
+      message: "Post must not be longer than 30 characters.",
     }),
 });
 
@@ -43,17 +43,14 @@ export const PostActions = ({ post }) => {
     setPostValue(event.target.value);
   };
 
-  const form = useForm<z.infer<typeof FormSchema>>({
-    defaultValues: {
-      post: "",
-    },
-  });
+  const form = useForm<z.infer<typeof FormSchema>>();
 
-  function onSubmit(data: z.infer<typeof FormSchema>) {
+  const onSubmit = (data: z.infer<typeof FormSchema>) => {
     form.reset();
     updatePost(post.id, postValue);
     setOpen(false);
-  }
+  };
+
   return (
     <>
       <div className="flex items-center gap-1">
@@ -82,8 +79,8 @@ export const PostActions = ({ post }) => {
                       <FormControl>
                         <Textarea
                           className="mt-[30px] flex h-[120px] resize-none items-center justify-around rounded-[7px] border border-[#b7b7b7] bg-[whitesmoke]"
-                          {...form.register("post")}
                           {...field}
+                          {...form.register("post")}
                           value={postValue}
                           onChange={handleOnChangeInput}
                         />
@@ -99,6 +96,11 @@ export const PostActions = ({ post }) => {
                   <Button
                     className="rounded bg-[#0077B5] px-4 py-2 font-sans text-base text-white hover:bg-[#006699]"
                     type="submit"
+                    disabled={
+                      !postValue.trim() ||
+                      postValue.length < 5 ||
+                      postValue.length > 500
+                    }
                   >
                     Update
                   </Button>

@@ -7,6 +7,7 @@ import {
   query,
   where,
   deleteDoc,
+  updateDoc,
 } from "firebase/firestore";
 import { toast } from "sonner";
 
@@ -30,6 +31,16 @@ export const deleteComment = (id) => {
   try {
     deleteDoc(docToDelete);
     toast("Comment has been Deleted!");
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+export const updateComment = (id, comment) => {
+  let docToUpdate = doc(commentsRef, id);
+  try {
+    updateDoc(docToUpdate, { comment });
+    toast("Comment has been updated!");
   } catch (err) {
     console.log(err);
   }

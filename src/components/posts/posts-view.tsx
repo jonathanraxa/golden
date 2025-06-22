@@ -11,7 +11,7 @@ import {
   CardFooter,
 } from "@/components/ui";
 import { PostActions } from "@/components/posts/post-actions";
-import { LikeButton } from "@/components/common/like-button";
+import { LikeButton } from "@/components/common/post-interaction";
 
 export const PostsView = ({ post, currentUser }) => {
   const [editPostView, setEditPostView] = useState(false);

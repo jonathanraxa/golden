@@ -9,7 +9,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { deleteComment } from "@/api";
 
-export const CommentDropdown = ({ commentId }) => {
+export const CommentActions = ({ commentId }) => {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>

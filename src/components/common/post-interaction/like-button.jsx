@@ -77,6 +77,7 @@ export const LikeButton = ({ postId, currentUser }) => {
             <Button
               className="mt-[15px] mb-[15px] h-[35px] w-[150px] cursor-pointer rounded-[30px] border-none bg-[#0a66c2] text-white outline-none"
               onClick={addComment}
+              disabled={!comment.trim().length}
             >
               Add Comment
             </Button>
