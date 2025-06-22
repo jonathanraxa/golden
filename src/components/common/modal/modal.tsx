@@ -16,9 +16,7 @@ export function Modal() {
   return (
     <Dialog>
       <form>
-        <DialogTrigger asChild>
-          <Button variant="outline">Open Dialog</Button>
-        </DialogTrigger>
+        <DialogTrigger asChild>Open Dialog</DialogTrigger>
         <DialogContent className="sm:max-w-[425px]">
           <DialogHeader>
             <DialogTitle>Edit profile</DialogTitle>
@@ -34,9 +32,7 @@ export function Modal() {
             </div>
           </div>
           <DialogFooter>
-            <DialogClose asChild>
-              <Button variant="outline">Cancel</Button>
-            </DialogClose>
+            <DialogClose asChild>Cancel</DialogClose>
             <Button type="submit">Post</Button>
           </DialogFooter>
         </DialogContent>

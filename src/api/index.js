@@ -1,4 +1,9 @@
-import { postComment, deleteComment, getComments } from "./comments";
+import {
+  postComment,
+  deleteComment,
+  updateComment,
+  getComments,
+} from "./comments";
 
 import {
   postStatus,
@@ -24,6 +29,7 @@ import { uploadImage, uploadPostImage } from "./image-upload";
 export {
   postComment,
   deleteComment,
+  updateComment,
   getComments,
   postStatus,
   getStatus,

@@ -55,15 +55,13 @@ export const PostActions = ({ post }) => {
     <>
       <div className="flex items-center gap-1">
         <Dialog open={open} onOpenChange={setOpen}>
-          <DialogTrigger>
-            <Button
-              variant="secondary"
-              size="icon"
-              className="size-10 shadow-none hover:bg-[#7978787c]"
-              onClick={() => setOpen(true)}
-            >
-              <FontAwesomeIcon icon={faPen} />
-            </Button>
+          <DialogTrigger
+            variant="secondary"
+            size="icon"
+            className="size-10 shadow-none hover:bg-[#7978787c]"
+            onClick={() => setOpen(true)}
+          >
+            <FontAwesomeIcon icon={faPen} />
           </DialogTrigger>
           <DialogContent className="bg-white">
             <DialogHeader>
@@ -110,14 +108,12 @@ export const PostActions = ({ post }) => {
           </DialogContent>
         </Dialog>
         <Dialog>
-          <DialogTrigger>
-            <Button
-              variant="secondary"
-              size="icon"
-              className="size-10 shadow-none hover:bg-[#7978787c]"
-            >
-              <FontAwesomeIcon icon={faTrash} />
-            </Button>
+          <DialogTrigger
+            variant="secondary"
+            size="icon"
+            className="size-10 shadow-none hover:bg-[#7978787c]"
+          >
+            <FontAwesomeIcon icon={faTrash} />
           </DialogTrigger>
           <DialogContent className="bg-white">
             <DialogHeader>

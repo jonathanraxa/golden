@@ -3,8 +3,7 @@ import moment from "moment";
 import { AiOutlineComment } from "react-icons/ai";
 import { BsFillHandThumbsUpFill, BsHandThumbsUp } from "react-icons/bs";
 import { Textarea, Button } from "@/components/ui";
-import { likePost, getLikesByUser } from "@/api";
-import { postComment, getComments } from "@/api";
+import { likePost, getLikesByUser, postComment, getComments } from "@/api";
 import { CommentView } from "./comment-view";
 
 const currentTime = moment().format("LLL");
@@ -51,7 +50,7 @@ export const LikeButton = ({ postId, currentUser }) => {
           <p className={liked ? "blue" : "black"}>Like</p>
         </div>
         <div
-          className="flex cursor-pointer items-center"
+          className="mr-5 flex cursor-pointer items-center"
           onClick={() => setShowCommentBox(!showCommentBox)}
         >
           {
@@ -60,8 +59,9 @@ export const LikeButton = ({ postId, currentUser }) => {
               color={showCommentBox ? "#0a66c2" : "#212121"}
             />
           }
-
-          <p className={showCommentBox ? "blue" : "black"}>Comments</p>
+          <p className={showCommentBox ? "blue" : "black"}>
+            {comments?.length} Comments
+          </p>
         </div>
       </div>
       {showCommentBox && (

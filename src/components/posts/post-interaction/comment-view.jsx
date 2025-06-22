@@ -1,5 +1,3 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEllipsisVertical } from "@fortawesome/free-solid-svg-icons";
 import { CommentActions } from "./comment-actions";
 
 export const CommentView = ({ comments }) => {
@@ -13,10 +11,8 @@ export const CommentView = ({ comments }) => {
               {comment.name}
             </p>
             <div className="flex items-center">
-              <p className="text-sm text-gray-500">{comment.timeStamp}</p>
-              <CommentActions commentId={comment.id}>
-                <FontAwesomeIcon icon={faEllipsisVertical} />
-              </CommentActions>
+              <p className="mr-4 text-sm text-gray-500">{comment.timeStamp}</p>
+              <CommentActions comment={comment} />
             </div>
           </div>
           <p className="mt-[1rem]">{comment.comment}</p>
