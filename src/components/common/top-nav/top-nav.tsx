@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
 import LinkedinLogo from "@/assets/linkedinLogo.png";
 import { TopNavProfilePopup } from "./top-nav-profile-popup";
-// import user from "@/assets/user";
-// import SearchUsers from "../SearchUsers";
 import {
   AiOutlineHome,
   AiOutlineUserSwitch,
@@ -11,6 +9,7 @@ import {
   AiOutlineBell,
 } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
+import { routes } from "@/routes/routes";
 import { BsBriefcase } from "react-icons/bs";
 import { getAllUsers } from "@/api";
 
@@ -32,7 +31,7 @@ export const TopNav = ({ currentUser }) => {
   };
 
   const openUser = (user) => {
-    navigate("/profile", {
+    navigate(routes.profile, {
       state: {
         id: user.id,
         email: user.email,
