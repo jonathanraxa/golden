@@ -21,7 +21,16 @@ import {
   DialogTrigger,
 } from "./dialog";
 import { DropdownMenu } from "./dropdown-menu";
-import { Form } from "./form";
+import {
+  useFormField,
+  Form,
+  FormItem,
+  FormLabel,
+  FormControl,
+  FormDescription,
+  FormMessage,
+  FormField,
+} from "./form";
 import { Input } from "./input";
 import { Label } from "./label";
 import { NavigationMenu } from "./navigation-menu";
@@ -50,7 +59,14 @@ export {
   DialogTitle,
   DialogTrigger,
   DropdownMenu,
+  useFormField,
   Form,
+  FormItem,
+  FormLabel,
+  FormControl,
+  FormDescription,
+  FormMessage,
+  FormField,
   Input,
   Label,
   NavigationMenu,

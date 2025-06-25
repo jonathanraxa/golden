@@ -14,14 +14,13 @@ import {
   DialogTrigger,
   DialogClose,
   Textarea,
-} from "@/components/ui";
-import {
   Form,
   FormControl,
   FormField,
   FormItem,
   FormMessage,
-} from "@/components/ui/form";
+} from "@/components/ui";
+
 import { deleteComment, updateComment } from "@/api";
 
 const FormSchema = z.object({
