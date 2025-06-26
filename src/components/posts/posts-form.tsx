@@ -58,7 +58,7 @@ export const PostsForm = ({ currentUser }) => {
           <div className="flex w-full items-center justify-around">
             <div>
               <img
-                className="h-[70px] w-[70px] rounded-full border-2 border-white shadow-md"
+                className="h-[70px] w-[70px] cursor-pointer rounded-full border-2 border-white shadow-md"
                 src={currentUser?.imageLink}
                 alt="imageLink"
                 onClick={() => navigate(routes.profile)}

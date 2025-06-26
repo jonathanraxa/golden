@@ -21,6 +21,7 @@ import {
   getCurrentUser,
   editProfile,
 } from "./users";
+import { addConnection, getConnections } from "./connections";
 
 import { likePost, getLikesByUser } from "./likes";
 
@@ -46,4 +47,6 @@ export {
   getLikesByUser,
   uploadImage,
   uploadPostImage,
+  addConnection,
+  getConnections,
 };

@@ -66,7 +66,7 @@ export const TopNav = ({ currentUser }) => {
     getAllUsers(setUsers);
   }, []);
   return (
-    <div className="fixed top-0 left-0 z-[105] flex h-[70px] w-screen items-center justify-between bg-[white]">
+    <div className="top-0 left-0 z-[105] flex h-[70px] w-screen items-center justify-between bg-[white]">
       <div>
         <img
           className="ml-[20px] w-[65px]"
@@ -91,7 +91,7 @@ export const TopNav = ({ currentUser }) => {
           <AiOutlineUserSwitch
             size={30}
             className="react-icon"
-            onClick={() => goToRoute("/connections")}
+            onClick={() => goToRoute(routes.connections)}
           />
           <BsBriefcase size={30} className="react-icon" />
           <AiOutlineMessage size={30} className="react-icon" />
