@@ -12,7 +12,7 @@ export const ConnectedUsers = ({ user, getCurrentUser, currentUser }) => {
   return (
     isConnectedTemp && (
       <Card className="relative m-[10px] flex h-[330px] w-[250px] cursor-pointer flex-col items-center rounded-[10px] border border-[#bbbbbb] p-[10px]">
-        <CardContent>
+        <CardContent className="flex h-full w-full flex-col items-center justify-center">
           <img
             className="mt-[1rem] h-[150px] w-[150px] rounded-full object-cover"
             src={user.imageLink}

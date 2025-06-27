@@ -15,8 +15,9 @@ import {
 import "./index.scss";
 
 export const TopNavProfilePopup = ({}) => {
-  let navigate = useNavigate();
+  const navigate = useNavigate();
   const [currentUser, setCurrentUser] = useState({});
+
   useMemo(() => {
     getCurrentUser(setCurrentUser);
   }, []);

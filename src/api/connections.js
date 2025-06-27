@@ -7,6 +7,7 @@ import {
   where,
   setDoc,
 } from "firebase/firestore";
+import { toast } from "sonner";
 
 const connectionRef = collection(firestore, "connections");
 
@@ -16,7 +17,7 @@ export const addConnection = (userId, targetId) => {
 
     setDoc(connectionToAdd, { userId, targetId });
 
-    toast.success("Connection Added!");
+    toast("Connection Added!");
   } catch (err) {
     console.log(err);
   }
