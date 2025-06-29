@@ -35,9 +35,21 @@ export const ProfileAboutCard = ({ currentUser, onEditAbout }) => {
           </Button>
         </CardAction>
       </CardHeader>
-      <CardContent>
-        <p className="font-sans break-words whitespace-pre-wrap">{aboutMe}</p>
-      </CardContent>
+     {aboutMe ? (
+       <CardContent>
+       <p className="font-sans break-words whitespace-pre-wrap">{aboutMe}</p>
+     </CardContent>
+     ): 
+      (<CardContent>
+        <p className="font-sans">No information provided.</p>
+        <Button
+            className="cursor-pointer rounded-[20px] border-none bg-[#0073b1] text-white outline-none mt-3"
+            onClick={() => onEditAbout()}
+          >
+            Edit About
+          </Button>
+      </CardContent>)
+     }
     </Card>
   );
 };

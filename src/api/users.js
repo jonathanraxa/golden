@@ -1,4 +1,4 @@
-import { firestore } from "@/firebaseConfig";
+import { firestore, auth } from "@/firebaseConfig";
 import {
   addDoc,
   collection,
@@ -40,17 +40,28 @@ export const postUserData = (object) => {
     });
 };
 
+// export const getCurrentUser = (setCurrentUser) => {
+//   onSnapshot(userRef, (response) => {
+//     setCurrentUser(
+//       response.docs
+//         .map((docs) => {
+//           return { ...docs.data(), id: docs.id };
+//         })
+//         .filter((item) => {
+//           return item.email === localStorage.getItem("userEmail");
+//         })[0],
+//     );
+//   });
+// };
+
 export const getCurrentUser = (setCurrentUser) => {
-  onSnapshot(userRef, (response) => {
-    setCurrentUser(
-      response.docs
-        .map((docs) => {
-          return { ...docs.data(), id: docs.id };
-        })
-        .filter((item) => {
-          return item.email === localStorage.getItem("userEmail");
-        })[0],
-    );
+  // const uid = auth.currentUser?.uid;
+  // const docRef = doc(db, "users", uid);
+
+  onSnapshot(userRef, (docSnap) => {
+    if (docSnap.exists()) {
+      setCurrentUser({ ...docSnap.data(), id: docSnap.id });
+    }
   });
 };
 

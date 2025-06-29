@@ -9,12 +9,12 @@ import { ConnectionLayout } from "@/layouts/connection-layout";
 
 export const router = createBrowserRouter([
   {
-    path: "/home",
-    element: <HomeLayout />,
-  },
-  {
     path: "/",
     element: <LoginPage />,
+  },
+  {
+    path: "/home",
+    element: <HomeLayout />,
   },
   {
     path: "/login",

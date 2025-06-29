@@ -20,17 +20,19 @@ import {
   getPosts,
   getSingleStatus,
   getSingleUser,
+  getCurrentUser,
   uploadImage as uploadImageAPI,
 } from "@/api";
 import { ProfileUploadImage } from "@/components/profile/profile-upload-image";
 
-export const ProfileCard = ({ currentUser, onEdit }) => {
+export const ProfileCard = ({ onEdit }) => {
   const location = useLocation();
   const [allPosts, setAllPosts] = useState([]);
   const [isEditAbout, setIsEditAbout] = useState(false);
 
   // currentProfile is the profile we selected
   const [currentProfile, setCurrentProfile] = useState({});
+  const [currentUser, setCurrentUser] = useState({});
   const [currentImage, setCurrentImage] = useState({});
   const [progress, setProgress] = useState(0);
   const getImage = (event) => {
@@ -52,6 +54,12 @@ export const ProfileCard = ({ currentUser, onEdit }) => {
     skills,
     timeStamp,
   } = source;
+
+  useMemo(() => {
+    getCurrentUser(setCurrentUser);
+  }, []);
+  
+  console.log("currentUser", currentUser);
 
   const uploadImage = () => {
     uploadImageAPI(currentImage, currentUser.id, setProgress, setCurrentImage);
@@ -85,10 +93,10 @@ export const ProfileCard = ({ currentUser, onEdit }) => {
             currentImage={currentImage}
             progress={progress}
           >
-            <img
+            {imageLink && <img
               src={imageLink}
               className="h-[90px] w-[90px] cursor-pointer rounded-[50%] object-cover"
-            />
+            />}
           </ProfileUploadImage>
           <div className="px-2">
             <CardTitle className="cursor-pointer text-xl font-extrabold text-gray-900 transition-colors duration-200 hover:text-blue-600">
@@ -110,16 +118,29 @@ export const ProfileCard = ({ currentUser, onEdit }) => {
         <CardContent>
           <div className="flex justify-between">
             <div>
-              <p>
-                {industry} | {skills}
-              </p>
-              <p className="mt-3">
+              {industry && (
+                <p>
+                  {industry}
+                </p>
+              )}
+              {
+                skills && (
+                  <p>
+                  {skills}
+                </p>
+                )
+              }
+             {
+               (city || state || country) && (
+                <p className="mt-3">
                 {city}, {state} | {country}
               </p>
+               )
+             }
             </div>
             <div>
-              <p>{company}</p>
-              <p>{website}</p>
+              {company && <p>{company}</p>}
+              {website && <p>{website}</p>}
             </div>
           </div>
         </CardContent>
