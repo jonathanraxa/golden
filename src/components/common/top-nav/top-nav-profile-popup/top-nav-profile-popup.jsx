@@ -12,6 +12,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import emptyImage from "@/assets/empty.webp";
 import "./index.scss";
 
 export const TopNavProfilePopup = ({}) => {
@@ -29,7 +30,8 @@ export const TopNavProfilePopup = ({}) => {
             <div className="mr-3 flex-shrink-0">
               <img
                 className="right-[30px] h-[50px] w-[50px] cursor-pointer rounded-[50%] object-cover"
-                src={currentUser.imageLink}
+                src={currentUser.imageLink ? currentUser.imageLink : emptyImage}
+                alt="User Avatar"
               />
             </div>
             <div>

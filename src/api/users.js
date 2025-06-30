@@ -8,6 +8,7 @@ import {
   query,
   where,
 } from "firebase/firestore";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 
 const userRef = collection(firestore, "users");
 
@@ -55,12 +56,22 @@ export const postUserData = (object) => {
 // };
 
 export const getCurrentUser = (setCurrentUser) => {
-  // const uid = auth.currentUser?.uid;
-  // const docRef = doc(db, "users", uid);
+  const auth = getAuth();
+  // const userRef = collection(firestore, "users");
 
-  onSnapshot(userRef, (docSnap) => {
-    if (docSnap.exists()) {
-      setCurrentUser({ ...docSnap.data(), id: docSnap.id });
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      const userRef = doc(firestore, "users", user.uid);
+
+      onSnapshot(userRef, (docSnap) => {
+        if (docSnap.exists()) {
+          setCurrentUser({ ...docSnap.data(), id: docSnap.id });
+        } else {
+          console.warn("User doc does not exist.");
+        }
+      });
+    } else {
+      console.warn("No user authenticated");
     }
   });
 };

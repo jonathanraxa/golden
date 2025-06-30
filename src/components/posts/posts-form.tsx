@@ -22,6 +22,7 @@ import {
   Card,
   CardContent,
 } from "@/components/ui";
+import emptyImage from "@/assets/empty.webp";
 
 const FormSchema = z.object({
   post: z
@@ -59,7 +60,9 @@ export const PostsForm = ({ currentUser }) => {
             <div>
               <img
                 className="h-[70px] w-[70px] cursor-pointer rounded-full border-2 border-white shadow-md"
-                src={currentUser?.imageLink}
+                src={
+                  currentUser?.imageLink ? currentUser.imageLink : emptyImage
+                }
                 alt="imageLink"
                 onClick={() => navigate(routes.profile)}
               />

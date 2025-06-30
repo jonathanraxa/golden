@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { AiOutlineUsergroupAdd } from "react-icons/ai";
 import { getConnections } from "@/api";
 import { Card, CardContent, CardFooter, Button } from "@/components/ui";
+import emptyImage from "@/assets/empty.webp";
 
 export const ConnectedUsers = ({ user, getCurrentUser, currentUser }) => {
   const [isConnected, setIsConnected] = useState(false);
@@ -15,7 +16,8 @@ export const ConnectedUsers = ({ user, getCurrentUser, currentUser }) => {
         <CardContent className="flex h-full w-full flex-col items-center justify-center">
           <img
             className="mt-[1rem] h-[150px] w-[150px] rounded-full object-cover"
-            src={user.imageLink}
+            src={user.imageLink ? user.imageLink : emptyImage}
+            alt="User Avatar"
           />
           <p className="mt-[1rem] font-sans text-[16px] font-semibold">
             {user.name}

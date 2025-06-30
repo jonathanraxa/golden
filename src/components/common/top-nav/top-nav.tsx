@@ -12,6 +12,7 @@ import { useNavigate } from "react-router-dom";
 import { routes } from "@/routes/routes";
 import { BsBriefcase } from "react-icons/bs";
 import { getAllUsers } from "@/api";
+import emptyImage from "@/assets/empty.webp";
 
 import "./index.scss";
 
@@ -101,7 +102,7 @@ export const TopNav = ({ currentUser }) => {
       <div className="pr-[3rem]">
         <img
           className="right-[30px] h-[40px] w-[40px] cursor-pointer rounded-[50%] object-cover"
-          src={currentUser?.imageLink}
+          src={currentUser?.imageLink ? currentUser.imageLink : emptyImage}
           alt="user"
           onClick={displayPopup}
         />

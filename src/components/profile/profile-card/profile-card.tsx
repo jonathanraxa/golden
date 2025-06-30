@@ -24,6 +24,7 @@ import {
   uploadImage as uploadImageAPI,
 } from "@/api";
 import { ProfileUploadImage } from "@/components/profile/profile-upload-image";
+import emptyImage from "@/assets/empty.webp";
 
 export const ProfileCard = ({ onEdit }) => {
   const location = useLocation();
@@ -58,7 +59,7 @@ export const ProfileCard = ({ onEdit }) => {
   useMemo(() => {
     getCurrentUser(setCurrentUser);
   }, []);
-  
+
   console.log("currentUser", currentUser);
 
   const uploadImage = () => {
@@ -93,10 +94,11 @@ export const ProfileCard = ({ onEdit }) => {
             currentImage={currentImage}
             progress={progress}
           >
-            {imageLink && <img
-              src={imageLink}
+            <img
+              src={imageLink ? imageLink : emptyImage}
+              alt="profile"
               className="h-[90px] w-[90px] cursor-pointer rounded-[50%] object-cover"
-            />}
+            />
           </ProfileUploadImage>
           <div className="px-2">
             <CardTitle className="cursor-pointer text-xl font-extrabold text-gray-900 transition-colors duration-200 hover:text-blue-600">
@@ -118,25 +120,13 @@ export const ProfileCard = ({ onEdit }) => {
         <CardContent>
           <div className="flex justify-between">
             <div>
-              {industry && (
-                <p>
-                  {industry}
+              {industry && <p>{industry}</p>}
+              {skills && <p>{skills}</p>}
+              {(city || state || country) && (
+                <p className="mt-3">
+                  {city}, {state} | {country}
                 </p>
               )}
-              {
-                skills && (
-                  <p>
-                  {skills}
-                </p>
-                )
-              }
-             {
-               (city || state || country) && (
-                <p className="mt-3">
-                {city}, {state} | {country}
-              </p>
-               )
-             }
             </div>
             <div>
               {company && <p>{company}</p>}

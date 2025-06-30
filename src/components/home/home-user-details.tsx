@@ -1,6 +1,7 @@
 import { routes } from "@/routes/routes";
 import { useNavigate } from "react-router-dom";
 import { Card, CardContent } from "@/components/ui";
+import emptyImage from "@/assets/empty.webp";
 
 export const HomeUserDetails = ({ currentUser }) => {
   const { name, headline, imageLink } = currentUser;
@@ -12,7 +13,7 @@ export const HomeUserDetails = ({ currentUser }) => {
       <CardContent className="flex flex-col items-center gap-2 py-10">
         <div className="top-0 right-0 mt-[-100px] mr-2">
           <img
-            src={imageLink}
+            src={imageLink ? imageLink : emptyImage}
             alt="Profile"
             className="h-20 w-20 cursor-pointer rounded-full border-2 border-white shadow-md"
             onClick={() => navigate(routes.profile)}
